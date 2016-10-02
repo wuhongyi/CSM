@@ -1,0 +1,247 @@
+%!
+200 dict begin
+% (using PSSKETCH prologue with DB mod of THU 25 MAY 1989\n) print
+% (                                and of THU 17 AUG 1989\n) print
+% prints commented out---seem to upset NeWS 1.1---DB THU 17 AUG 1989
+
+/inch {72 mul} def
+
+/A3 {statusdict begin a3tray end 1.414 dup scale} def
+/A3P {A3} def
+/A3L{A3 Land} def
+/A4 {} def
+/A4P {} def
+/A4L{Land} def
+/Land{0 11.4 inch translate -90 rotate} def
+/initialise {18 0 translate 0 setlinejoin 5 setmiterlimit} def
+
+/H  {/Bold false def /Helvetica F} def 
+/HB {/Bold true  def /Helvetica-Bold F} def 
+/HI {/Bold false def /Helvetica-Oblique F} def
+/HBI{/Bold true  def /Helvetica-BoldOblique F} def
+/T  {/Bold false def /Times-Roman F} def 
+/TB {/Bold true  def /Times-Bold F} def
+/TI {/Bold false def /Times-Italic F} def 
+/TBI{/Bold true  def /Times-BoldItalic F} def
+/C  {/Bold false def /Courier F} def 
+/CB {/Bold true  def /Courier-Bold F} def
+/CI {/Bold false def /Courier-Oblique F} def
+/CBI{/Bold true  def /Courier-BoldOblique F} def 
+/Sy {/Bold false def 
+     /str exch def /Symbol findfont symfontsize scalefont setfont
+     str showtext symfontsize fontsize eq {normalfont}{smallfont} ifelse} def
+/F  {1 index dup /fontsize exch def /symfontsize exch def
+    dup /font exch def findfont fontsize scalefont setfont pop} def
+%------pop fontsize operand left on stack------------------^  DB THU 25 MAY 1989
+/smallfont { font findfont fontsize 0.6 mul dup /symfontsize exch def
+             scalefont setfont} def
+/normalfont{ font findfont fontsize dup /symfontsize exch def
+             scalefont setfont} def
+
+/np{newpath} def   /clp{closepath} def
+/gs {gsave} def    /gr{grestore} def
+/sw{1 setgray} def /sg {0 setgray} def
+/l  {lineto} def   /m {moveto} def
+/rl {rlineto} def  /rm {rmoveto} def
+
+/showtext {getstring show} def
+/L {currentpoint m l stroke} def
+
+/s  {sp gs sw fill gr stroke} def
+/sp {/ds exch def np m ds 2 div neg dup rm 
+    0 ds rl ds 0 rl 0 ds neg rl ds neg 0 rl clp } def
+/sf {sp fill}  def
+/cf {cp fill} def 
+/c  {cp gs sw fill gr stroke} def
+/cp {np 2 div 0 360 arc clp} def
+/t  {tp gs sw fill gr stroke} def
+/tf {tp fill} def
+/tp {/ds exch 2 div def /dss ds 1.732 mul def np m ds neg dss 2 div neg rm
+    ds dss rl ds dss neg rl ds 2 mul neg 0 rl clp} def
+/tdp{/ds exch 2 div def /dss ds 0.866 mul def np m 0 dss neg rm
+     ds neg dss 2 mul rl ds 2 mul 0 rl ds neg dss 2 mul neg rl clp} def
+/td {tdp gs sw fill gr sg stroke} def /tdf{ tdp fill } def
+/st {/t1 exch def /t2 exch def /t3 exch def
+     t3 t2 t1 pl t3 t2 t1 0.7 mul cr} def
+/stf { st } def
+/dp {/ds exch 2 div def m np 0 ds neg m ds neg ds rl ds dup rl ds ds neg rl
+     ds neg dup rl clp} def
+/d  {dp stroke} def
+/df {dp fill} def
+/cr {/ds exch def np m ds 2 div neg dup rm 
+    ds dup rl 0 ds neg rm ds neg ds rl clp stroke } def
+/crf { cr } def
+/pl {/ds exch def np m 0 ds 2 div neg rm 
+    0 ds rl ds 2 div neg dup rm ds 0 rl clp stroke } def
+/plf { pl } def
+/dp {/ds exch 2 div def np m 0 ds neg rm ds neg ds rl
+    ds dup rl ds ds neg rl ds neg dup rl clp} def
+/df {dp fill} def /d{dp gs sw fill gr stroke} def
+
+/showsym { /prc exch def
+           symfontsize 2 div /dxy exch def
+           currentpoint /yy exch dxy 2 div add def /xx exch dxy add def
+           xx yy dxy prc xx yy m dxy dxy 2 div neg rm } def 
+
+/STAR     { filled {{ stf } showsym}{{ st } showsym} ifelse }def
+/CIRCLE   { filled {{ cf  } showsym}{{ c  } showsym} ifelse } def
+/TRIANGLE { filled {{ tdf } showsym}{{ td } showsym} ifelse }def
+/DELTA    { filled {{ tf  } showsym}{{ t  } showsym} ifelse } def
+/CROSS    { { cr } showsym }def
+/PLUS     { { pl } showsym } def
+/DIAMOND  { filled {{ df  } showsym}{{ d  } showsym} ifelse } def
+/SQUARE   { filled {{ sf  } showsym}{{ s  } showsym} ifelse } def
+
+/getstring {/temp exch def /counter 0 def temp 
+%------change name of loop variable to 'counter'------------  DB THU 17 AUG 1989
+%------'count' is built in operator, and NeWS 1.1 gets upset  DB THU 17 AUG 1989
+           {/t1 exch def
+             t1 45 eq {/t1 177 def} if 
+             temp counter t1 put counter 1 add /counter exch def
+           } forall temp} def 
+
+ 
+/showit  { currentpoint /ty exch def /tx exch def np tx ty m gs number
+           stringwidth pop fontsize 10 div neg dup rm 0 fontsize rl
+           fontsize dup 5 div add 0  rl 0 fontsize neg rl clp sw fill
+           gr number show } def
+
+/drawit    { dup /y exch def x exch lineto off 0 rlineto
+             /x x off add def } def
+
+/numdc     { getstring /number exch def m number dup
+             stringwidth pop 2 div neg fontsize neg rm show} def
+/numdr     { getstring /number exch def m number dup
+             stringwidth pop neg fontsize neg rm show} def
+/numdl     { getstring /number exch def m number 0 fontsize neg rm show} def
+/numuc     { getstring /number exch def m number dup 
+             stringwidth pop 2 div neg 0 rm show} def
+/numur     { getstring /number  exch def m number dup
+             stringwidth pop neg 0 rm show} def
+/numul     { getstring /number  exch def m number show} def
+
+/log10uc   { getstring /power exch def moveto
+           (10) stringwidth pop /stsize exch def
+           gsave smallfont power stringwidth pop stsize add 2 div neg 0 rm
+           font findfont fontsize scalefont setfont (10) show 
+           smallfont 0 fontsize 2 div rm power show normalfont grestore} def
+/log10ur   { getstring /power  exch def moveto
+           (10) stringwidth pop /stsize exch def
+           gsave smallfont power stringwidth pop stsize add neg 0 rm
+           normalfont (10) show smallfont
+           0 fontsize 2 div rm power show normalfont grestore} def
+/log10ul   { getstring /power  exch def moveto (10) show smallfont
+           0 fontsize 2 div rm power show normalfont} def
+
+/log10dc   { getstring /power exch def moveto
+           (10) stringwidth pop /stsize exch def
+           gsave smallfont power stringwidth pop stsize add 2 div neg
+           fontsize 1.1 mul neg rm
+           font findfont fontsize scalefont setfont (10) show 
+           smallfont 0 fontsize 2 div rm power show normalfont grestore} def
+/log10dr   { getstring /power  exch def moveto
+           (10) stringwidth pop /stsize exch def
+           gsave smallfont power stringwidth pop stsize add neg
+           fontsize 1.1 mul neg rm
+           normalfont (10) show smallfont
+           0 fontsize 2 div rm power show normalfont grestore} def
+/log10dl   { getstring /power  exch def moveto (10) show smallfont
+           0 fontsize 2 div rm power show normalfont} def
+
+%special characters - like hbar
+/hbar{ font /curfont exch def
+       Bold {symfontsize TBI} {symfontsize TI} ifelse
+       gs 10 rotate symfontsize 8 div dup 2 mul rm
+       (\261) show gr (h) show
+       curfont dup /font exch def 
+       findfont symfontsize scalefont setfont}def
+
+/HersheyBuildDict 10 dict def
+/BuildHersheyChar {
+        /char exch def
+        /fontdict exch def
+        /cd fontdict /CharData get fontdict /Encoding get char get get def
+        /llx 99 def /lly 99 def /urx -99 def /ury -99 def
+        /isx true def
+        cd 2 get { isx { dup 32 eq { pop } 
+        { 82 sub cd 0 get sub dup llx lt { dup /llx exch def } if
+        dup urx gt { dup /urx exch def } if
+        pop /isx false def } ifelse
+        }{        
+        neg 91 add dup lly lt { dup /lly exch def } if
+        dup ury gt { dup /ury exch def } if
+        pop /isx true def } ifelse
+        } forall
+        cd 1 get cd 0 get sub 0 llx 1 sub lly 1 sub urx 1 add ury 1 add
+        setcachedevice
+        /domove true def
+        /isx true def
+        cd 2 get { isx { dup 32 eq { pop /domove true def
+        } {
+        82 sub cd 0 get sub /isx false def } ifelse
+        } {
+        neg 91 add domove { moveto /domove false def } { lineto } ifelse
+        /isx true def } ifelse
+        } forall
+        1 setmiterlimit 1 setlinejoin 1 setlinecap
+        fontdict /PenWidth get setlinewidth stroke
+} bind def
+/MakeHersheyFont {
+        10 dict dup begin
+        exch /ItalicAngle exch def
+        exch /PenWidth exch def
+        exch /FontName exch def
+        exch /CharData exch def
+        /FontType 3 def
+        /FontMatrix
+         [1 33 div 0 ItalicAngle neg dup sin exch cos
+          div 33 div 1 33 div 0 0] def
+        /Encoding StandardEncoding def
+        /BuildChar {HersheyBuildDict begin BuildHersheyChar end} def
+        /FontBBox [-10 -10 30 30] def
+        FontName end exch definefont
+} bind def
+1 dict dup begin
+/I [-9 7 (WHUKSPQUPWNZL[ YLWNTOQOONNLNJOHQGUFYFWHVJTPRVQXOZL[J[IZIXJWKXJY)] def
+end 
+/Hershey-Script-Complex 0.75 2 MakeHersheyFont pop
+%------pop font object left on stack-----------^       DB THU 25 MAY 1989
+
+/I {   font /curfont exch def
+       /Hershey-Script-Complex findfont symfontsize 1.5 mul scalefont setfont
+       0 symfontsize 10 div neg rm (I) show 0 symfontsize 10 div rm
+       curfont dup /font exch def 
+       findfont symfontsize scalefont setfont}def
+/startFig{/SavedState save def
+          userdict maxlength dict begin
+          currentpoint transform
+          % initgraphics removed at this point and replaced by equivalent code:
+          initmatrix newpath initclip 1 setlinewidth 0 setlinecap 0 setlinejoin
+          [] 0 setdash 0 setgray 10 setmiterlimit
+          % initgraphics end 
+          itransform moveto 
+          /ury exch def  /urx exch def 
+          /lly exch def  /llx exch def 
+          /y exch  def   /x exch  def
+          currentpoint   /cy exch def /cx exch def
+          /sx urx llx sub def /sy ury lly sub def 
+        sx 0 gt sy 0 gt and { llx ury   0 x sx div abs y sy div abs } if 
+        sx 0 lt sy 0 gt and { urx lly  90 x sy div abs y sx div abs } if 
+        sx 0 gt sy 0 lt and { urx lly 270 y sx div abs x sy div abs } if 
+        sx 0 lt sy 0 lt and { llx ury 180 x sx div abs y sy div abs } if
+        cx cy translate scale neg rotate neg exch neg exch translate 
+        0 0 moveto doclip 
+        /DefFigCTM matrix currentmatrix def
+        /initmatrix{DefFigCTM setmatrix}def 
+        /defaultmatrix{DefFigCTM exch copy}def
+%  /exval{load dup dup xcheck exch type /arraytype eq and{aload pop}if}def
+%  /initgraphics[/initgraphics exval DefFigCTM /setmatrix exval]cvx def 
+  /showpage{initgraphics}def}def 
+  /clipFig{currentpoint 6 2 roll newpath 4 copy 4 2 roll
+           moveto 6 -1 roll exch lineto
+           exch lineto exch lineto closepath clip moveto}def
+  /doclip{llx lly urx ury clipFig}def 
+  /endFig{end SavedState restore}def 
+   
+initialise  
+/deffont {H} def

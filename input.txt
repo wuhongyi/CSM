@@ -1,0 +1,110 @@
+## input.txt --- 
+## 
+## Description: 
+## Author: Hongyi Wu(吴鸿毅)
+## Email: wuhongyi@qq.com 
+## Created: 日 10月  2 12:48:04 2016 (+0800)
+## Last-Updated: 日 10月  2 14:10:11 2016 (+0800)
+##           By: Hongyi Wu(吴鸿毅)
+##     Update #: 2
+## URL: http://wuhongyi.github.io 
+
+##本输入卡中'#'之后的为注释
+
+#输出文件夹
+outputdir  test
+
+#AutomaticSearch 选择判断线类型
+LineStyle  1   #1=solid   2=dash   3=dot   4=dash-dot  
+
+#以下参数为输入卡swgamma.inp
+INTDAT_IAUTO   1            #int
+NAZWIS         4            #int
+BETA2_bin      0.05         #double
+BETA2_min      0.1          #double
+BETA2_max      0.2          #double
+BETA4_bin      0.005        #double
+BETA4_min      0.001        #double
+BETA4_max      0.01         #double
+GAMM_bin       20           #double
+GAMM_min       -30          #double
+GAMM_max       -10          #double
+IZ             32           #int
+IN             43           #int
+
+#以下参数为输入卡jxgamma_N.inp
+N_PHYSIN_IVAR     0         #int
+N_ISETS           0         #int
+N_NCUTDN          10        #int
+N_NCUTGN          100       #int
+N_NNND            43        #int
+N_AUXILI_IDECOM   1         #int
+
+#以下参数为输入卡jxgamma_P.inp
+P_PHYSIN_IVAR     1         #int
+P_ISETS           0         #int
+P_NCUTDP          10        #int
+P_NCUTGP          100       #int
+P_NNND            32        #int
+P_AUXILI_IDECOM   1         #int
+
+#以下参数为输入卡 hfbc_N.inp
+N_DEFINE_IPROJ    0         #int
+N_IPRINT          1         #int
+N_IPLOT           2         #int
+N_IMODEL          2         #int
+N_STARTI_OMEGIN   0.00001   #double
+N_STEPOM          0.05      #double
+N_ILOM            22        #int
+N_DELG            1.4       #double
+N_STD             0.07      #double
+N_OMCRIT          0.70      #double
+N_DELTA0          0.0       #double
+N_YLAMM           10.0      #double
+N_NQPPPS_1        0         #int
+N_NQPPNS_1        0         #int
+N_NQNPPS_1        1         #int
+N_NQNPNS_1        0         #int
+N_NQPPPS_2        0         #int
+N_NQPPNS_2        0         #int
+N_NQNPPS_2        0         #int
+N_NQNPNS_2        0         #int
+N_NQPPPS_3        0         #int
+N_NQPPNS_3        0         #int
+N_NQNPPS_3        0         #int
+N_NQNPNS_3        0         #int
+
+#以下参数为输入卡 hfbc_P.inp
+P_DEFINE_IPROJ    0         #int
+P_IPRINT          1         #int
+P_IPLOT           2         #int
+P_IMODEL          2         #int
+P_STARTI_OMEGIN   0.00001   #double
+P_STEPOM          0.05      #double
+P_ILOM            22        #int
+P_DELG            1.4       #double
+P_STD             0.07      #double
+P_OMCRIT          0.70      #double
+P_DELTA0          0.0       #double
+P_YLAMM           10.0      #double
+P_NQPPPS_1        0         #int
+P_NQPPNS_1        0         #int
+P_NQNPPS_1        0         #int
+P_NQNPNS_1        0         #int
+P_NQPPPS_2        0         #int
+P_NQPPNS_2        0         #int
+P_NQNPPS_2        0         #int
+P_NQNPNS_2        0         #int
+P_NQPPPS_3        0         #int
+P_NQPPNS_3        0         #int
+P_NQNPPS_3        0         #int
+P_NQNPNS_3        0         #int
+
+#以下参数为输入卡 spag2psk.inp
+INDAT             0         #int
+YMIN              -2.0      #double
+YMAX              2.0       #double
+YSTEP             0.5       #double
+
+
+######################################################################
