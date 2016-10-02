@@ -4,9 +4,9 @@
 // Author: Hongyi Wu(吴鸿毅)
 // Email: wuhongyi@qq.com 
 // Created: 日 10月  2 13:57:12 2016 (+0800)
-// Last-Updated: 日 10月  2 14:26:51 2016 (+0800)
+// Last-Updated: 日 10月  2 15:07:54 2016 (+0800)
 //           By: Hongyi Wu(吴鸿毅)
-//     Update #: 6
+//     Update #: 7
 // URL: http://wuhongyi.github.io 
 
 #include <iostream>
@@ -54,7 +54,7 @@ void dealpsk(char *filename,int selectlinestyle, int *linestyle,double *x_min,do
   while(getline(infile,onelinestring))
     {
       // cout<<onelinestring.size()<<"|"<<onelinestring<<endl;
-      if(onelinestring.size() == 13 && onelinestring[1] == 'L' && onelinestring[6] == 'S') break;
+      if(onelinestring[1] == 'L' && onelinestring[1] == 'I' && onelinestring[6] == 'S' && onelinestring[1] == 'M') break;
     }
 
   for (int ii = 0; ii < LENGTH; ++ii)
