@@ -4,10 +4,12 @@
 // Author: Hongyi Wu(吴鸿毅)
 // Email: wuhongyi@qq.com 
 // Created: 日 10月  2 13:57:12 2016 (+0800)
-// Last-Updated: 日 10月  2 15:18:32 2016 (+0800)
+// Last-Updated: 二 10月  4 14:31:33 2016 (+0800)
 //           By: Hongyi Wu(吴鸿毅)
-//     Update #: 8
+//     Update #: 14
 // URL: http://wuhongyi.github.io 
+
+#include "TGraph.h"
 
 #include <iostream>
 #include <cstdio>
@@ -27,6 +29,11 @@
 
 void dealpsk(char *filename,int selectlinestyle, int *linestyle,double *x_min,double *y_min,double *y_init)
 {
+  *linestyle = 0;
+  *x_min = -1;
+  *y_min = -1;
+  *y_init = -1;
+  
   std::ifstream infile;
   std::string onelinestring;
   
@@ -40,6 +47,8 @@ void dealpsk(char *filename,int selectlinestyle, int *linestyle,double *x_min,do
   double data[LENGTH][44];
   bool flagcouple[LENGTH];
 
+  TGraph *g1 = new TGraph();
+  TGraph *g2 = new TGraph();
   
   int flag;
   flag = 0;
@@ -156,30 +165,68 @@ void dealpsk(char *filename,int selectlinestyle, int *linestyle,double *x_min,do
 		}
 	    }
 
-	  if(tempdouble < 3)//这个是经验数值
-	  if(tempxmin < flagxmin)
-	    {
-	      flagxmin = tempxmin;
-	      flagii = ii;
-	      *y_min = tempdouble;
-	    }	  
+	  if(tempdouble < 3 && tempxmin >= 4)//这个是经验数值
+	    if(tempxmin < flagxmin)
+	      {
+		flagxmin = tempxmin;
+		flagii = ii;
+		*y_min = tempdouble;
+	      }	  
 	}
     }
-	    
+
   *linestyle = FlagLineStyle[flagii];
-  *x_min = xxx[flagxmin];
+  // *x_min = xxx[flagxmin];
   *y_init = FlagY0[flagii];
 
+  
+
+  
+  for (int i = 0; i < 22; ++i)
+    {
+      g1->SetPoint(i, xxx[i], data[flagii][i]);
+      g2->SetPoint(i, xxx[i], data[flagii][i+22]);
+    }
+
+  double Interpolation[106];
+  tempdouble = DBL_MAX;
+  for (int i = 0; i < 106; ++i)
+    {
+      Interpolation[i] = g1->Eval(0.01*i, 0, "S")-g2->Eval(0.01*i, 0, "S");
+      if(Interpolation[i] < tempdouble)
+	{
+	  tempdouble = Interpolation[i];
+	  *y_min = tempdouble;
+	  flagii = i;
+	}
+    }
+  *x_min = 0.01*flagii;
+  
   cout<<*linestyle<<"  "<<*x_min<<"  "<<*y_min<<"  "<<*y_init<<endl;
+
+  delete g1;
+  delete g2;
 }
+
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 int main(int argc, char *argv[])
 {
-  std::string inputcardfilename = "input.txt";
-  std::string outputdir = wuReadData::ReadValue<std::string>("outputdir",inputcardfilename);//输出文件夹，结尾不能出现 \
+
+  if(argc != 2)
+    {
+      std::cout<< "run:  ./XXX [filename]" <<std::endl;
+      exit(1);
+    }
   
+  std::string outputdir(argv[1]);
+  // std::cout<<outputdir<<"  "<<outputdir.size()<<std::endl;
+  if(outputdir[outputdir.size()-1] == '/') 
+    outputdir = outputdir.erase(outputdir.size()-1,1);
+  // std::cout<<outputdir<<"  "<<outputdir.size()<<std::endl;
+    
+  std::string inputcardfilename = outputdir+"/input.txt";
   double BETA2_bin = wuReadData::ReadValue<double>("BETA2_bin",inputcardfilename);
   double BETA2_min = wuReadData::ReadValue<double>("BETA2_min",inputcardfilename);
   double BETA2_max = wuReadData::ReadValue<double>("BETA2_max",inputcardfilename);
@@ -245,7 +292,6 @@ int main(int argc, char *argv[])
 
   writeN.close();
   writeP.close();
-
   
   return 0;
 }

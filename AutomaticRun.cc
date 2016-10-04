@@ -4,9 +4,9 @@
 // Author: Hongyi Wu(吴鸿毅)
 // Email: wuhongyi@qq.com 
 // Created: 日 10月  2 13:11:55 2016 (+0800)
-// Last-Updated: 日 10月  2 13:31:56 2016 (+0800)
+// Last-Updated: 二 10月  4 14:16:14 2016 (+0800)
 //           By: Hongyi Wu(吴鸿毅)
-//     Update #: 5
+//     Update #: 6
 // URL: http://wuhongyi.github.io 
 
 #include <iostream>
@@ -215,6 +215,9 @@ int main(int argc, char *argv[])
   sprintf(tempchar,"copy %s %s",spag2pskfilename,outputdir.c_str());
   system(tempchar);
 
+  sprintf(tempchar,"copy %s %s",inputcardfilename.c_str(),outputdir.c_str());
+  system(tempchar);
+  
   //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
   
   for(double i=BETA2_min;i<=BETA2_max;i+=BETA2_bin)
