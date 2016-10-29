@@ -7,7 +7,7 @@
 // Last-Updated: 五 4月 15 15:44:49 2016 (+0800)
 //           By: Hongyi Wu(吴鸿毅)
 //     Update #: 17
-// URL: http://wuhongyi.github.io 
+// URL: http://wuhongyi.cn 
 
 //20151112修复空行字符" "开头的bug
 //20160324修复空行字符"\n"开头的bug

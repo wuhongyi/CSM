@@ -7,7 +7,7 @@
 ## Last-Updated: 日 10月  2 14:10:11 2016 (+0800)
 ##           By: Hongyi Wu(吴鸿毅)
 ##     Update #: 2
-## URL: http://wuhongyi.github.io 
+## URL: http://wuhongyi.cn 
 
 ##本输入卡中'#'之后的为注释
 
